@@ -1,16 +1,26 @@
+import Counter from '../UI/Counter';
 import meunItemModule from './MenuItem.module.css';
 
-const MenuItem = () => {
+const MenuItem = ({menuItemData, amount}) => {
     return <div className={meunItemModule.menuItem}>
         <div className={meunItemModule.imgContainer}>
-            <img src='/imgs/burgers/giantCheeseBurger.jpg'></img>
+            <img src={menuItemData.imageSource}></img>
         </div>
         <div>
-            <h2 className={meunItemModule.title}>Giant Cheese Burger</h2>
-            <p className={meunItemModule.description}>Our famous cheeseburger is a legendary combo of 100% Aussie beef, classic cheese, onions, a pickle, tangy ketchup and mustard. Enjoy at Macca's® today!</p>
+            <h2 className={meunItemModule.title}>
+                {menuItemData.name}
+            </h2>
+            <p className={meunItemModule.description}>
+                {menuItemData.description}
+            </p>
             <div className={meunItemModule.disclaimer}>
-                <span className={meunItemModule.price}>$12</span>
-                <div>count</div>
+                <span className={meunItemModule.price}>
+                    ${menuItemData.price}
+                </span>
+                <Counter 
+                    menuItemData={menuItemData} 
+                    amount = {amount}
+                />
             </div>
         </div>
     </div>

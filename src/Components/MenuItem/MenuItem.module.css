@@ -9,6 +9,7 @@
     max-width: 240rem;
     min-height: 240rem;
     margin-right: 10rem;
+    align-content: center;
 }
 
 img{
@@ -24,16 +25,18 @@ img{
 
 .description {
     color: darkgoldenrod;
-    width: 95%;
+    width: 85%;
 }
 
 .disclaimer {
     margin-top: 40rem;
     display: flex;
     justify-content: space-between;
+    margin-right: 20rem;
 }
 
 .price {
     font-size: 30rem;
     font-weight: bold;
+    align-content: center;
 }
