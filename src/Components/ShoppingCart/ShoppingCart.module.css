@@ -1,0 +1,91 @@
+.shoppingCartContainer {
+    position: fixed;
+    bottom: 20rem;
+    left: 0;
+    width: -webkit-fill-available;
+    background: dimgray;
+    height: 100rem;
+    border-radius: 8px;
+    margin: 0 20rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.mcdCart {
+    position: absolute;
+    bottom: 0;
+    left: 40rem;
+    height: 120rem;
+}
+
+.bag {
+  width: 120rem;
+  height: 100rem;
+  background-color: #D2B48C; /* McDonald's red */
+  border-radius: 8px 8px 4px 4px;
+  position: relative;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.handle {
+  width: 40px;
+  height: 10px;
+  border: 4px solid #FFC72C; /* McDonald's yellow */
+  border-bottom: none;
+  border-radius: 10px 10px 0 0;
+  position: absolute;
+  top: -10px;
+  left: 10px;
+}
+
+.stripe {
+  width: 80%;
+  height: 6px;
+  background-color: #FFC72C;
+  border-radius: 3px;
+  position: absolute;
+  left: 10%;
+}
+
+.counter {
+    position: absolute;
+    bottom: 90rem;
+    z-index: 999;
+    left: 120rem;
+    border-radius: 80%;
+    background-color: #DA291C;
+    width: 55rem;
+    height: 55rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-size: 26rem;
+    color: white;
+    font-weight: bold;
+}
+
+.totalPrice {
+    padding-right: 180rem;
+    font-size: x-large;
+    align-self: center;
+    font-weight: bold;
+    color: white;
+}
+
+.checkOutContainer {
+    float: right;
+    height: 100%;
+    align-content: center;
+    width: 200rem;
+    text-align: center;
+    font-size: large;
+    border-radius: 8px;
+    background-color: #ffbc0d;
+    font-weight: bold;
+}
+
+.checkOutContainerNotAvailable {
+    background-color: lightgray;
+    color: dimgray;
+}

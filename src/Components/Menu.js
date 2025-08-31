@@ -13,7 +13,9 @@ const Menu = ({menuData}) => {
     ));
 
     return <div className={MenuModule.menuContainer}>
-        {menuData}
+        <div className={MenuModule.menuDetailsContainer}>
+            {menuData}
+        </div>
     </div>
 };
 

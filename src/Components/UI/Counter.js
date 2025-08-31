@@ -13,15 +13,22 @@ const Counter = ({menuItemData, amount}) => {
     const onRemoveBtnClicked = () => {
         removeItem(menuItemData.id);
     }
+
+    const selected = amount > 0;
     
     return <div className= {CounterModule.counterContainer}>
-        <button className ={CounterModule.subButton} 
-            style= {{visibility: amount > 0 ? 'visible' : 'hidden'}}
-            onClick={onRemoveBtnClicked}
-         >
-            <FontAwesomeIcon icon={faMinus}/>
-        </button>
-        <span className= {CounterModule.counterText} style= {{visibility: amount > 0 ? 'visible' : 'hidden'}}>{amount}</span>
+
+        {
+            selected ? <>
+                            <button className ={CounterModule.subButton} onClick={onRemoveBtnClicked}>
+                                <FontAwesomeIcon icon={faMinus}/>
+                            </button> 
+                            <span className= {CounterModule.counterText}>
+                                {amount}
+                            </span>:
+                        </> : ""
+        }
+       
         <button className ={CounterModule.addButton} onClick={onAddBtnClicked}>
             <FontAwesomeIcon icon={faPlus} />
         </button>

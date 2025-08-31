@@ -3,6 +3,7 @@ import appModule from './App.module.css';
 import { CartProvider } from "./store/CartContext";
 import MenuFilter from "./Components/MenuFilter/MenuFilter";
 import { useState } from "react";
+import ShoppingCart from "./Components/ShoppingCart/ShoppingCart";
 
 const data = [
         {
@@ -73,12 +74,18 @@ const App = () => {
         setMenuData(currentMenuData);
     }
 
-    return <div className={appModule.app}>
-        <MenuFilter onFilterTextChanged = {onFilterTextChanged}/>
+    return <>
+        <div className={appModule.app}>
+            <MenuFilter onFilterTextChanged = {onFilterTextChanged}/>
+            
             <CartProvider>
                 <Menu menuData = {menuData}/>
+                <ShoppingCart/>
             </CartProvider>
+
+            
         </div>
+    </>
 }
 
 export default App;
