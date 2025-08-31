@@ -1,66 +1,64 @@
+import { faAmazon } from "@fortawesome/free-brands-svg-icons";
 import { createContext, useContext, useState } from "react";
 
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-    const [cart, setCart] = useState({
+    const [cartData, setCartData] = useState({
         orderedItems: [],
         totalPrice: 0,
         totalAmount: 0,
     });
 
-    const addItem = (newItem) => {
-        setCart((prev) => {
-            const orderedItems = [...prev.orderedItems];
-            const existing = orderedItems.find(t => t.id === newItem.id);
+    const addItem = (menuItemData) => {
+        setCartData(prev => {
+            let orderedItems = [...prev.orderedItems];
+            let item = orderedItems.find(t => t.id === menuItemData.id);
+            orderedItems = orderedItems.filter(t => t.id !== menuItemData.id);
 
-            if (!existing) {
-                orderedItems.push({ ...newItem, amount: 1 });
-            } else {
-                const updated = { ...existing, amount: existing.amount + 1 };
-                const index = orderedItems.findIndex(t => t.id === newItem.id);
-                orderedItems[index] = updated;
+            if(item){
+                item = {...item, amount: item.amount + 1};
+            }else{
+                item = {...menuItemData, amount : 1};
+            }
+
+            orderedItems.push(item);
+
+            return {
+                orderedItems: orderedItems,
+                totalAmount: prev.totalAmount + 1,
+                totalPrice: prev.totalPrice + menuItemData.price
+            }
+        })
+    }
+
+    const removeItem = (id) => {
+        setCartData(prev => {
+            let orderedItems = [...prev.orderedItems];
+            let existing = orderedItems.find(t => t.id === id);
+            
+            if(!existing){
+                return prev;
+            }
+
+            let itemAmount = existing.amount;
+            orderedItems = orderedItems.filter(t => t.id !== id);
+            if(itemAmount > 1){
+                existing = {...existing, amount: itemAmount - 1};
+                orderedItems.push(existing);
             }
 
             return {
-                orderedItems,
-                totalPrice: prev.totalPrice + newItem.price,
-                totalAmount: prev.totalAmount + 1,
-            };
-        });
-    };
-
-    const removeItem = (id) => {
-        setCart((prev) => {
-            let orderedItems = [...prev.orderedItems];
-            const existing = orderedItems.find(t => t.id === id);
-
-            if (!existing) {
-                return prev;
-            }else{
-                const index = orderedItems.findIndex(t => t.id === id);
-                const updated = {...existing, amount: existing.amount - 1};
-                
-                if(updated.amount == 0){
-                    orderedItems = orderedItems.filter(t => t.id !== id);
-                }else{
-                    orderedItems[index] = updated;
-                }
-
-                return {
-                    orderedItems: orderedItems,
-                    totalPrice: prev.totalPrice - existing.price,
-                    totalAmount: prev.totalAmount - 1,
-                };
+                orderedItems: orderedItems,
+                totalPrice: prev.totalPrice - existing.price,
+                totalAmount: prev.totalAmount - 1
             }
-        });
-    };
+        })
+    }
 
-    return (
-        <CartContext.Provider value={{ cart, addItem, removeItem }}>
-            {children}
-        </CartContext.Provider>
-    );
-};
+    return <CartContext.Provider value = {{cartData, addItem, removeItem}}>
+        {children}
+    </CartContext.Provider>
+}
 
 export const useCart = () => useContext(CartContext);
