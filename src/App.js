@@ -1,9 +1,10 @@
 import Menu from "./Components/Menu";
 import appModule from './App.module.css';
-import { useState } from "react";
 import { CartProvider } from "./store/CartContext";
+import MenuFilter from "./Components/MenuFilter/MenuFilter";
+import { useState } from "react";
 
-const menuData = [
+const data = [
         {
             id: 1,
             name: 'Classic Angus',
@@ -64,7 +65,16 @@ const menuData = [
     ]
 
 const App = () => {
+    const [menuData, setMenuData] = useState(data);
+
+    const onFilterTextChanged = (newFilterText) => {
+        let currentMenuData = data.filter(t => t.name.includes(newFilterText) ||
+                                            t.description.includes(newFilterText));
+        setMenuData(currentMenuData);
+    }
+
     return <div className={appModule.app}>
+        <MenuFilter onFilterTextChanged = {onFilterTextChanged}/>
             <CartProvider>
                 <Menu menuData = {menuData}/>
             </CartProvider>

@@ -1,0 +1,37 @@
+.filterContainer {
+    height: 100rem;
+    border-bottom: 1px #f2f2f2 solid;
+    align-content: center;
+}
+
+.inputContainer {
+    margin: 0 80rem;
+    width: -webkit-fill-available;
+    height: 50%;
+    display: flex;
+    background-color: lightgrey;
+    border-radius: 5px;
+    align-content: center;
+
+}
+
+.magnifyingGlass {
+    font-size: 30rem;
+    align-self: center;
+    margin-left: 5px;
+    color: dimgrey;
+}
+
+input {
+    width: 100%;
+    border: none;
+    margin-left: 5px;
+    background-color: lightgray;
+    border-radius: 5px;
+    color: dimgrey;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: none;
+}
