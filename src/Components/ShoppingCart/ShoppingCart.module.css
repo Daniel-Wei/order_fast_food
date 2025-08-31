@@ -50,7 +50,6 @@
 .counter {
     position: absolute;
     bottom: 90rem;
-    z-index: 999;
     left: 120rem;
     border-radius: 80%;
     background-color: #DA291C;

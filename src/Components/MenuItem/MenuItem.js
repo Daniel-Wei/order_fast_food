@@ -1,4 +1,4 @@
-import Counter from '../UI/Counter';
+import Counter from '../UI/Counter/Counter';
 import meunItemModule from './MenuItem.module.css';
 
 const MenuItem = ({menuItemData, amount}) => {

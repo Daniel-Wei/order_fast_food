@@ -1,7 +1,7 @@
 import CounterModule from "./Counter.module.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
-import { useCart } from "../../store/CartContext";
+import { useCart } from "../../../store/CartContext";
 
 const Counter = ({menuItemData, amount}) => {
     const {addItem, removeItem} = useCart();
