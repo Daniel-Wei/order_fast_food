@@ -13,15 +13,15 @@ export const CartProvider = ({ children }) => {
         setCartData(prev => {
             let orderedItems = [...prev.orderedItems];
             let item = orderedItems.find(t => t.id === menuItemData.id);
-            orderedItems = orderedItems.filter(t => t.id !== menuItemData.id);
+            let idx = orderedItems.indexOf(item);
 
             if(item){
                 item = {...item, amount: item.amount + 1};
+                orderedItems[idx] = item;
             }else{
                 item = {...menuItemData, amount : 1};
+                orderedItems.push(item);
             }
-
-            orderedItems.push(item);
 
             return {
                 orderedItems: orderedItems,
@@ -41,10 +41,12 @@ export const CartProvider = ({ children }) => {
             }
 
             let itemAmount = existing.amount;
-            orderedItems = orderedItems.filter(t => t.id !== id);
+            let idx = orderedItems.indexOf(existing);
             if(itemAmount > 1){
                 existing = {...existing, amount: itemAmount - 1};
-                orderedItems.push(existing);
+                orderedItems[idx] = existing;
+            }else{
+                orderedItems = orderedItems.filter(t => t.id !== existing.id);
             }
 
             return {

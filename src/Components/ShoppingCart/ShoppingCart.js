@@ -1,27 +1,25 @@
 import { useState } from "react";
 import { useCart } from "../../store/CartContext";
-import Backdrop from "../UI/Backdrop/Backdrop";
-
 import shoppingCartModule from './ShoppingCart.module.css';
+import CartDetails from "./CartDetails/CartDetails";
 
 const ShoppingCart = () => {
     const { cartData } = useCart();
     const shoppingCartNotEmpty = cartData.totalAmount > 0;
-    const [ orderDetails, setOrderDetails ]= useState("");
+    const [ showCartDetails, setShowCartDetails ]= useState(false);
+
 
     const onDetailsClicked = () => {
-        if(shoppingCartNotEmpty){
-            setOrderDetails(<Backdrop/>)
-        }else{
-            setOrderDetails("");
-        }
+        setShowCartDetails(prev => !prev);
     }
-
 
     return <>
         <div className={shoppingCartModule.shoppingCartContainer}>
             <>
-                {orderDetails}
+                {shoppingCartNotEmpty && showCartDetails ? 
+                    <CartDetails/> : ""}
+
+                {/* <CartDetails/> */}
             </>
             <div className={shoppingCartModule.mcdCart} onClick={onDetailsClicked}>
                 <div className={shoppingCartModule.bag}>
