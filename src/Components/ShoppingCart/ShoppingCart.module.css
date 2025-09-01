@@ -5,7 +5,7 @@
     width: -webkit-fill-available;
     background: dimgray;
     height: 100rem;
-    border-radius: 8px;
+    border-radius: 15px;
     margin: 0 20rem;
     display: flex;
     justify-content: flex-end;
@@ -66,7 +66,7 @@
 
 .totalPrice {
     padding-right: 180rem;
-    font-size: x-large;
+    font-size: 40rem;
     align-self: center;
     font-weight: bold;
     color: white;
@@ -78,8 +78,8 @@
     align-content: center;
     width: 200rem;
     text-align: center;
-    font-size: large;
-    border-radius: 8px;
+    font-size: 30rem;
+    border-radius: 15px;
     background-color: #ffbc0d;
     font-weight: bold;
 }

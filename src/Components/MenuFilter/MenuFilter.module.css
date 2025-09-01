@@ -29,6 +29,7 @@ input {
     background-color: lightgray;
     border-radius: 5px;
     color: dimgrey;
+    font-size: 25rem;
 }
 
 input:focus {

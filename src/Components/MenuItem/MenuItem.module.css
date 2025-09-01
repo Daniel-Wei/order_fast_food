@@ -25,7 +25,7 @@ img{
 
 .description {
     color: darkgoldenrod;
-    width: 85%;
+    max-width: 600rem;
 }
 
 .disclaimer {
