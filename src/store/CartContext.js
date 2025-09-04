@@ -9,6 +9,17 @@ export const CartProvider = ({ children }) => {
         totalAmount: 0,
     });
 
+
+    const emptyCart = () => {
+        setCartData(_ => {
+            return {
+                orderedItems: [],
+                totalPrice: 0,
+                totalAmount: 0
+            }
+        });
+    }
+
     const addItem = (menuItemData) => {
         setCartData(prev => {
             let orderedItems = [...prev.orderedItems];
@@ -57,7 +68,7 @@ export const CartProvider = ({ children }) => {
         })
     }
 
-    return <CartContext.Provider value = {{cartData, addItem, removeItem}}>
+    return <CartContext.Provider value = {{cartData, addItem, removeItem, emptyCart}}>
         {children}
     </CartContext.Provider>
 }

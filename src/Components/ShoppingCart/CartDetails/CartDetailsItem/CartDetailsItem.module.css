@@ -1,9 +1,8 @@
 .cartItem {
     border-bottom: 1px #f2f2f2 solid;
     display: flex;
-    max-height: 150rem;
+    height: 160rem;
     align-items: center;
-    margin-top: 110rem;
 }
 
 .imgContainer {
@@ -21,7 +20,6 @@ img{
 
 .orderDetailsContainer {
     width: -webkit-fill-available;
-    min-height: 100%;
 }
 
 .title {
@@ -37,7 +35,6 @@ img{
 }
 
 .disclaimer {
-    margin-top: 30rem;
     display: flex;
     justify-content: space-between;
     margin-right: 20rem;

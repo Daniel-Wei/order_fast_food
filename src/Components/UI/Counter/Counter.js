@@ -25,7 +25,7 @@ const Counter = ({menuItemData, amount}) => {
                             </button> 
                             <span className= {CounterModule.counterText}>
                                 {amount}
-                            </span>:
+                            </span>
                         </> : ""
         }
        
