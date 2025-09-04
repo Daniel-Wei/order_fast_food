@@ -4,12 +4,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import CheckoutModule from './Checkout.module.css';
 import CartDetailsItem from "../CartDetails/CartDetailsItem/CartDetailsItem";
+import Backdrop from "../../UI/Backdrop/Backdrop";
 
 const Checkout = ({ onCloseBtnClicked }) => {
     const checkoutRoot = document.getElementById('checkoutRoot');
     const {cartData} = useCart();
 
-    const portalContent = <div className={CheckoutModule.checkoutContainer}>
+    const portalContent = <Backdrop>
+        <div className={CheckoutModule.checkoutContainer}>
             <div className={CheckoutModule.checkoutHeaderContainer}>
                 <FontAwesomeIcon icon={faClose} onClick={onCloseBtnClicked}/>
             </div>
@@ -26,6 +28,8 @@ const Checkout = ({ onCloseBtnClicked }) => {
                 </div>
             }
         </div>
+    </Backdrop>
+    
 
     return createPortal(portalContent, checkoutRoot);
 }

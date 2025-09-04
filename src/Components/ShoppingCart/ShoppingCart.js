@@ -44,9 +44,19 @@ const ShoppingCart = () => {
         setShowPaymentConfirmPrompt(_ => false);
         onCheckoutButtonClicked();
     }
+    
 
     return <>
-        <div className={shoppingCartModule.shoppingCartContainer} onClick={onDetailsClicked}>
+        
+        {
+            showPaymentConfirmPrompt ? <ConfirmModal 
+                confirmText="Please confirm your payment"
+                onConfirmDelete={onPaymentConfirmed}
+                onCancelDelete={onPaymentCancelled}
+            /> : ""
+        }
+
+        <div className={shoppingCartModule.shoppingCartContainer}>
             <>
                 {
                     showCheckoutPage ? <Checkout onCloseBtnClicked = {onCheckoutCloseButtonClicked}/> : ""
@@ -57,16 +67,8 @@ const ShoppingCart = () => {
                     showCartDetails ? <CartDetails/> : ""
                 }
             </>
-            <>
-                {
-                    showPaymentConfirmPrompt ? <ConfirmModal 
-                        confirmText="Please confirm your payment"
-                        onConfirmDelete={onPaymentConfirmed}
-                        onCancelDelete={onPaymentCancelled}
-                    /> : ""
-                }
-            </>
-            <div className={shoppingCartModule.mcdCart}>
+            
+            <div className={shoppingCartModule.mcdCart} onClick={onDetailsClicked}>
                 <div className={shoppingCartModule.bag}>
                     <div className={shoppingCartModule.stripe}></div>
                     <div className={shoppingCartModule.stripe}></div>
@@ -92,8 +94,6 @@ const ShoppingCart = () => {
                 onClick={showCheckoutPage ? onPayButtonClicked : onCheckoutButtonClicked}>
                 {showCheckoutPage ? "Pay" : "Check out"}
            </div>
-        
-            
         </div>
     </>
 }

@@ -13,7 +13,7 @@ const CartDetails = () => {
     const { cartData, emptyCart } = useCart();
     const shoppingCartNotEmpty = cartData.totalAmount > 0;
 
-    const [showEmptyConfirmation, setShowEmptyCartConfirmation] = useState();
+    const [showEmptyConfirmation, setShowEmptyCartConfirmation] = useState(false);
     const onConfirmEmptyCart = () => {
         if(shoppingCartNotEmpty) {
             setShowEmptyCartConfirmation(_ => false);
@@ -26,7 +26,9 @@ const CartDetails = () => {
     }
 
     const onEmptyCartButtonClicked = () => {
-        setShowEmptyCartConfirmation(_ => true);
+        if(shoppingCartNotEmpty){
+            setShowEmptyCartConfirmation(_ => true);
+        }
     }
     
     const portalContent = <Backdrop>
