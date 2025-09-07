@@ -56,7 +56,7 @@ const ShoppingCart = () => {
             // as it keeps trigger new re-renders
             // setShowCartDetails(prev => !prev);
         }
-    });
+    }, [shoppingCartNotEmpty]);
 
     return <>
         
