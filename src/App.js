@@ -2,7 +2,7 @@ import Menu from "./Components/Menu";
 import appModule from './App.module.css';
 import { CartProvider } from "./store/CartContext";
 import MenuFilter from "./Components/MenuFilter/MenuFilter";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import ShoppingCart from "./Components/ShoppingCart/ShoppingCart";
 
 const data = [
@@ -68,11 +68,14 @@ const data = [
 const App = () => {
     const [menuData, setMenuData] = useState(data);
 
-    const onFilterTextChanged = (newFilterText) => {
+    // useCallback(): make sure onFilterTextChanged only defined once
+    // Thus, when it is called and trigged App.js re-render, it would not be defined once again
+    // As a result, in MenuFilter.js, useEffect() will not be triggered again
+    const onFilterTextChanged = useCallback((newFilterText) => {
         let currentMenuData = data.filter(t => t.name.includes(newFilterText) ||
                                             t.description.includes(newFilterText));
         setMenuData(currentMenuData);
-    }
+    }, []);
 
     return <>
         <div className={appModule.app}>
