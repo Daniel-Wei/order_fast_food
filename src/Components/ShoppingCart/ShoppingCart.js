@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCart } from "../../store/CartContext";
 import shoppingCartModule from './ShoppingCart.module.css';
 import CartDetails from "./CartDetails/CartDetails";
@@ -44,7 +44,19 @@ const ShoppingCart = () => {
         setShowPaymentConfirmPrompt(_ => false);
         onCheckoutButtonClicked();
     }
-    
+
+    // avoid initial too many re-renders
+    // hide cart details/checkout page when shopping cart is empty
+    useEffect(() => {
+        if(!shoppingCartNotEmpty){
+            setShowCartDetails(_ => false);
+            setShowCheckoutPage(_ => false);
+
+            // if set new state value to be !prev, results in Maximum update depth exceeded.
+            // as it keeps trigger new re-renders
+            // setShowCartDetails(prev => !prev);
+        }
+    });
 
     return <>
         
