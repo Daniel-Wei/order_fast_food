@@ -1,7 +1,7 @@
 const CartActionTypeEnums = {
-    empty: 'empty',
-    add: 'add',
-    remove: 'remove'
+    empty: 1,
+    add: 2,
+    remove: 3
 };
 
 export default CartActionTypeEnums;

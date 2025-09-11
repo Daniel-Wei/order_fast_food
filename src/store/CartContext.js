@@ -10,10 +10,11 @@ const empty = () => {
 };
 
 const CartReducer = (state, action) => {
+    let ordered = [...state.orderedItems];
+
     switch(action.type){
         case CartActionTypeEnums.add:
             const menuItemData = action.payload;
-            let ordered = [...state.orderedItems];
             let item = ordered.find(t => t.id === menuItemData.id);
             let index = ordered.indexOf(item);
 
@@ -32,24 +33,23 @@ const CartReducer = (state, action) => {
             }
         case CartActionTypeEnums.remove:
             const id = action.payload;
-            let orderedItems = [...state.orderedItems];
-            let existing = orderedItems.find(t => t.id === id);
+            let existing = ordered.find(t => t.id === id);
             
             if(!existing){
                 return state;
             }
 
             let itemAmount = existing.amount;
-            let idx = orderedItems.indexOf(existing);
+            let idx = ordered.indexOf(existing);
             if(itemAmount > 1){
                 existing = {...existing, amount: itemAmount - 1};
-                orderedItems[idx] = existing;
+                ordered[idx] = existing;
             }else{
-                orderedItems = orderedItems.filter(t => t.id !== existing.id);
+                ordered = ordered.filter(t => t.id !== existing.id);
             }
 
             return {
-                orderedItems: orderedItems,
+                orderedItems: ordered,
                 totalPrice: state.totalPrice - existing.price,
                 totalAmount: state.totalAmount - 1
             };
@@ -64,19 +64,8 @@ const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
     const [cartData, cartDataDispatch] = useReducer(CartReducer, empty());
-    const addItem = (menuItemData) => {
-        cartDataDispatch({type: CartActionTypeEnums.add, payload: menuItemData});
-    }
 
-    const removeItem = (id) => {
-        cartDataDispatch({type: CartActionTypeEnums.remove, payload: id});
-    }
-
-    const emptyCart = () => {
-        cartDataDispatch({type: CartActionTypeEnums.empty});
-    }
-
-    return <CartContext.Provider value = {{cartData, addItem, removeItem, emptyCart}}>
+    return <CartContext.Provider value = {{ cartData, cartDataDispatch }}>
         {children}
     </CartContext.Provider>
 }

@@ -4,9 +4,10 @@ import shoppingCartModule from './ShoppingCart.module.css';
 import CartDetails from "./CartDetails/CartDetails";
 import Checkout from "./Checkout/Checkout";
 import ConfirmModal from "../UI/ConfirmModel/ConfirmModel";
+import CartActionTypeEnums from "../../store/CartActionTypeEnums";
 
 const ShoppingCart = () => {
-    const { cartData, emptyCart } = useCart();
+    const { cartData, cartDataDispatch } = useCart();
     const shoppingCartNotEmpty = cartData.totalAmount > 0;
     const [ showCartDetails, setShowCartDetails ]= useState(false);
     const [ showCheckoutPage, setShowCheckoutPage ] = useState(false);
@@ -37,7 +38,7 @@ const ShoppingCart = () => {
 
     const onPaymentConfirmed = () => {
         onPaymentCancelled();
-        emptyCart();
+        cartDataDispatch( { type: CartActionTypeEnums.empty });
     }
 
     const onPaymentCancelled = () => {

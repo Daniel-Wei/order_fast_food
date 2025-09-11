@@ -2,16 +2,17 @@ import CounterModule from "./Counter.module.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import { useCart } from "../../../store/CartContext";
+import CartActionTypeEnums from "../../../store/CartActionTypeEnums";
 
 const Counter = ({menuItemData, amount}) => {
-    const {addItem, removeItem} = useCart();
+    const { cartDataDispatch } = useCart();
 
     const onAddBtnClicked = () => {
-        addItem(menuItemData);
+        cartDataDispatch( { type: CartActionTypeEnums.add, payload: menuItemData} );
     }
 
     const onRemoveBtnClicked = () => {
-        removeItem(menuItemData.id);
+        cartDataDispatch( { type: CartActionTypeEnums.remove, payload: menuItemData.id });
     }
 
     const selected = amount > 0;

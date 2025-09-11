@@ -61,7 +61,7 @@ const data = [
             name: 'Green Chile',
             price: 12.88,
             imageSource: '/imgs/burgers/greenChileCheeseBurger.jpg',
-            description: 'a New Mexico culinary icon featuring a juicy beef patty topped with fiery, roasted green chiles, often a specific variety like Hatch, and melted cheese. The signature ingredient, the roasted green chile, provides a smoky, spicy flavor that is central to this beloved regional dish, distinguishing it from other burgers by its intense heat and unique, vibrant taste.',
+            description: 'A New Mexico culinary icon featuring a juicy beef patty topped with fiery, roasted green chiles, often a specific variety like Hatch, and melted cheese. The signature ingredient, the roasted green chile, provides a smoky, spicy flavor that is central to this beloved regional dish, distinguishing it from other burgers by its intense heat and unique, vibrant taste.',
         }, 
     ]
 

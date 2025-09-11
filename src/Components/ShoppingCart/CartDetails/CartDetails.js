@@ -7,17 +7,18 @@ import CartDetailsItem from "./CartDetailsItem/CartDetailsItem";
 import { useCart } from "../../../store/CartContext";
 import { useState } from "react";
 import ConfirmModal from "../../UI/ConfirmModel/ConfirmModel";
+import CartActionTypeEnums from "../../../store/CartActionTypeEnums";
 
 const CartDetails = () => {
     const cartDetailsRoot = document.getElementById('cartDetailsRoot');
-    const { cartData, emptyCart } = useCart();
+    const { cartData, cartDataDispatch } = useCart();
     const shoppingCartNotEmpty = cartData.totalAmount > 0;
 
     const [showEmptyConfirmation, setShowEmptyCartConfirmation] = useState(false);
     const onConfirmEmptyCart = () => {
         if(shoppingCartNotEmpty) {
             setShowEmptyCartConfirmation(_ => false);
-            emptyCart();
+            cartDataDispatch( { type: CartActionTypeEnums.empty } ); 
         }
     }
 
